@@ -16,6 +16,9 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useNavigate } from "react-router-dom";
+import { API } from "../global";
+import { useState, useEffect } from "react";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -57,7 +60,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export function NavBar() {
+export function NavBar({ cart }) {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -194,8 +198,9 @@ export function NavBar() {
               size="large"
               aria-label="show 4 new mails"
               color="inherit"
+              onClick={() => navigate("/cart")}
             >
-              <Badge badgeContent={4} color="error">
+              <Badge badgeContent={cart} color="error">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>

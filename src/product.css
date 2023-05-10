@@ -8,13 +8,16 @@
 .product-card{
     padding: 16px;
     width: 200px;
-    height: 250px;
+    height: 270px;
     border-radius: 10px;
     text-align: center;
     transition: all 0.2s;
 }
 .product-card h3{
    margin: 0px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
 }
 .product-card h4{
     margin: 2px;
@@ -40,4 +43,8 @@
     overflow:unset;
     text-overflow:unset;
     white-space:unset;
+    cursor: pointer;
+}
+.product-card button{
+    margin: 10px;
 }

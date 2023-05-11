@@ -1,4 +1,5 @@
 import * as React from "react";
+import "./NavBar.css";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -163,24 +164,15 @@ export function NavBar({ cart }) {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            MUI
+            E Kart
           </Typography>
-          <Search>
+          <Search id="search">
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>

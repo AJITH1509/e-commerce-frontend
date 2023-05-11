@@ -8,13 +8,12 @@ import { NavBar } from "./NavBar";
 export const ProductList = () => {
   const [show, setShow] = useState(true);
   const [product, setProduct] = useState([]);
-  const [cartid, setCartid] = useState("");
   const [cart, setCart] = useState("");
   const handleCart = async (id) => {
     await fetch(`${API}/addtocart/${id}/645b7dfa0f3e50ca3bd39a4f`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
-    });
+    }).then(() => setShow(!show));
   };
   const getData = () => {
     fetch(`${API}/products`)
@@ -62,7 +61,6 @@ const ProductCard = ({ data, handleCart, setShow, show }) => {
       <Button
         onClick={() => {
           handleCart(data._id);
-          setShow(!show);
         }}
         variant="contained"
         startIcon={<ShoppingCartIcon />}

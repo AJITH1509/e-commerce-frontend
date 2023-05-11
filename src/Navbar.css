@@ -1,0 +1,7 @@
+#search{
+   transition: all 0.3;
+   
+}
+#search:focus{
+  width: 500px;
+ }

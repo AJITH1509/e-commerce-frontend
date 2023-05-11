@@ -1,0 +1,31 @@
+.product-list-cart{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 16px;
+}
+.product-card-cart{
+    padding: 16px;
+    width: 200px;
+    height: 270px;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.2s;
+}
+.product-card-cart img{
+    height: 150px;
+    width: 200px;
+    object-fit: contain;
+    object-position: center;
+    mix-blend-mode: color-burn;
+}
+.empty-cart{
+    margin-top: 20px;
+    display: grid;
+    justify-items: center;
+}
+.empty-cart img{
+   height: 600px;
+   width: 600px;
+   object-fit: cover;
+}

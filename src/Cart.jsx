@@ -30,10 +30,22 @@ export const Cart = () => {
   const subTotal = () => {
     let total = 0;
     for (let i = 0; i < cartItems.length; i++) {
-      let price = +cartItems[i].price;
-      total = total + price;
+      let price = +cartItems[i].price || 0;
+      let quantity = +cartItems[i].quantity || 0;
+      total = total + price * quantity;
     }
     return total;
+  };
+
+  const updateCartItem = (id, number) => {
+    fetch(`${API}/quantity/${id}/${user}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ number }),
+    })
+      .then((res) => res.json())
+      .then(() => subTotal())
+      .then(() => getCartItems());
   };
 
   return (
@@ -59,6 +71,7 @@ export const Cart = () => {
               key={data._id}
               data={data}
               deleteCartItems={deleteCartItems}
+              updateCartItem={updateCartItem}
             />
           ))}
         </div>
@@ -67,7 +80,20 @@ export const Cart = () => {
   );
 };
 
-const CartItemCard = ({ data, deleteCartItems }) => {
+const CartItemCard = ({ data, deleteCartItems, updateCartItem }) => {
+  const [quantity, setQuantity] = useState(data.quantity || 1);
+
+  const handleIncrement = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+    updateCartItem(data._id, quantity + 1);
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity((prevQuantity) => prevQuantity - 1);
+      updateCartItem(data._id, quantity - 1);
+    }
+  };
   return (
     <div className="product-card-cart">
       <img src={data.image} />
@@ -77,6 +103,12 @@ const CartItemCard = ({ data, deleteCartItems }) => {
           <p>{data.description}</p>
         </div>
         <h4>{`Rs.${data.price} /-`}</h4>
+        <h4>Quantity</h4>
+        <div className="qunatity-btn">
+          <p onClick={handleDecrement}>-</p>
+          <span>{quantity}</span>
+          <p onClick={handleIncrement}>+</p>
+        </div>
         <div className="cart-btn">
           <Button
             color="success"

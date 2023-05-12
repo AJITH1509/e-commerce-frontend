@@ -22,6 +22,9 @@
     object-position: center;
     mix-blend-mode: color-burn;
 }
+.product-card-cart h4{
+    margin: 2px;
+}
 .empty-cart{
     margin-top: 20px;
     display: grid;
@@ -43,3 +46,27 @@
     display: flex;
     justify-content: space-around;
 }
+.qunatity-btn{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+.qunatity-btn p:hover{
+    background-color: rgba(128, 128, 128, 0.39);
+}
+.qunatity-btn p{
+    font-size: 24px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid black;
+    border-radius: 3px;
+}
+.qunatity-btn :nth-child(1){
+   margin: 0px 20px 5px 0px;
+
+}
+.qunatity-btn :nth-child(3){
+    margin: 0px 0px 5px 20px;
+ }

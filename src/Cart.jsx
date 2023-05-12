@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { NavBar } from "./NavBar";
 import Button from "@mui/material/Button";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import DeleteIcon from "@mui/icons-material/Delete";
 export const Cart = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
@@ -26,10 +27,24 @@ export const Cart = () => {
       .then((res) => res.json())
       .then(() => getCartItems());
   };
+  const subTotal = () => {
+    let total = 0;
+    for (let i = 0; i < cartItems.length; i++) {
+      let price = +cartItems[i].price;
+      total = total + price;
+    }
+    return total;
+  };
 
   return (
     <div>
       <NavBar cart={cartItems.length} />
+      {cartItems.length !== 0 ? (
+        <p className="sub-total">
+          Subtotal: Rs.<span>{subTotal()}</span> /-
+        </p>
+      ) : null}
+
       {cartItems.length === 0 ? (
         <div className="empty-cart">
           <img
@@ -56,18 +71,33 @@ const CartItemCard = ({ data, deleteCartItems }) => {
   return (
     <div className="product-card-cart">
       <img src={data.image} />
-      <h3>{data.name}</h3>
-      <p>{data.description}</p>
-      <h4>{`Rs.${data.price} /-`}</h4>
-      <Button
-        onClick={() => {
-          deleteCartItems(data._id);
-        }}
-        variant="contained"
-        startIcon={<ShoppingCartIcon />}
-      >
-        remove
-      </Button>
+      <div className="product-details-cart">
+        <div>
+          <h3>{data.name}</h3>
+          <p>{data.description}</p>
+        </div>
+        <h4>{`Rs.${data.price} /-`}</h4>
+        <div className="cart-btn">
+          <Button
+            color="success"
+            onClick={() => {}}
+            variant="outlined"
+            startIcon={<ShoppingCartIcon />}
+          >
+            Buy now
+          </Button>
+          <Button
+            color="error"
+            onClick={() => {
+              deleteCartItems(data._id);
+            }}
+            variant="outlined"
+            startIcon={<DeleteIcon />}
+          >
+            remove
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

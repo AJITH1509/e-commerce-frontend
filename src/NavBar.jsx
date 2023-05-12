@@ -165,10 +165,11 @@ export function NavBar({ cart }) {
       <AppBar position="static">
         <Toolbar>
           <Typography
-            variant="h6"
+            onClick={() => navigate("/")}
+            variant="h5"
             noWrap
             component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
+            sx={{ display: { xs: "none", sm: "block", cursor: "pointer" } }}
           >
             E Kart
           </Typography>

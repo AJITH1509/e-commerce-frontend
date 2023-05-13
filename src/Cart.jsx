@@ -7,15 +7,28 @@ import { NavBar } from "./NavBar";
 import Button from "@mui/material/Button";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { LinearColor } from "./Loading";
+
 export const Cart = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const user = "645b7dfa0f3e50ca3bd39a4f"; //localStorage.getItem("id");
+
   const getCartItems = () => {
+    setLoading(true);
     fetch(`${API}/cart/${user}`)
       .then((res) => res.json())
-      .then((data) => setCartItems(data.cart));
+      .then((data) => {
+        setCartItems(data.cart);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
   };
+
   useEffect(() => {
     getCartItems();
   }, []);
@@ -25,8 +38,10 @@ export const Cart = () => {
       method: "DELETE",
     })
       .then((res) => res.json())
-      .then(() => getCartItems());
+      .then(() => getCartItems())
+      .catch((error) => console.error(error));
   };
+
   const subTotal = () => {
     let total = 0;
     for (let i = 0; i < cartItems.length; i++) {
@@ -42,12 +57,15 @@ export const Cart = () => {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ number }),
-    }).then(() => getCartItems());
+    })
+      .then(() => getCartItems())
+      .catch((error) => console.error(error));
   };
 
   return (
     <div>
       <NavBar cart={cartItems.length} />
+      {loading ? <LinearColor /> : null}
       {cartItems.length !== 0 ? (
         <p className="sub-total">
           Subtotal: Rs.<span>{subTotal()}</span> /-

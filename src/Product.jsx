@@ -4,11 +4,13 @@ import "./product.css";
 import Button from "@mui/material/Button";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { NavBar } from "./NavBar";
+import { LinearColor } from "./Loading.jsx";
 
 export const ProductList = () => {
   const [show, setShow] = useState(true);
   const [product, setProduct] = useState([]);
   const [cart, setCart] = useState("");
+  const [loading, setLoading] = useState(true);
   const handleCart = async (id) => {
     await fetch(`${API}/addtocart/${id}/645b7dfa0f3e50ca3bd39a4f`, {
       method: "PUT",
@@ -18,7 +20,10 @@ export const ProductList = () => {
   const getData = () => {
     fetch(`${API}/products`)
       .then((response) => response.json())
-      .then((data) => setProduct(data))
+      .then((data) => {
+        setProduct(data);
+        setLoading(false);
+      })
       .catch((error) => console.log(error));
   };
   useEffect(() => {
@@ -36,17 +41,24 @@ export const ProductList = () => {
   return (
     <div>
       <NavBar cart={cart} />
-      <div className="product-list">
-        {product.map((data) => (
-          <ProductCard
-            key={data._id}
-            data={data}
-            setShow={setShow}
-            show={show}
-            handleCart={handleCart}
-          />
-        ))}
-      </div>
+
+      {loading ? (
+        <LinearColor />
+      ) : (
+        <div>
+          <div className="product-list">
+            {product.map((data) => (
+              <ProductCard
+                key={data._id}
+                data={data}
+                setShow={setShow}
+                show={show}
+                handleCart={handleCart}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

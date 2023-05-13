@@ -31,7 +31,7 @@ export const Cart = () => {
     let total = 0;
     for (let i = 0; i < cartItems.length; i++) {
       let price = +cartItems[i].price || 0;
-      let quantity = +cartItems[i].quantity || 0;
+      let quantity = +cartItems[i].quantity || 1;
       total = total + price * quantity;
     }
     return total;
@@ -42,10 +42,7 @@ export const Cart = () => {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ number }),
-    })
-      .then((res) => res.json())
-      .then(() => subTotal())
-      .then(() => getCartItems());
+    }).then(() => getCartItems());
   };
 
   return (

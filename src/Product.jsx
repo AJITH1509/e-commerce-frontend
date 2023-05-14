@@ -5,12 +5,17 @@ import Button from "@mui/material/Button";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { NavBar } from "./NavBar";
 import { LinearColor } from "./Loading.jsx";
+import { Pagination } from "./Pagination.jsx";
 
 export const ProductList = () => {
   const [show, setShow] = useState(true);
   const [product, setProduct] = useState([]);
   const [cart, setCart] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const LastPostIndex = currentPage * 8;
+  const firstPostIndex = LastPostIndex - 8;
   const [loading, setLoading] = useState(true);
+  const pagination = product.slice(firstPostIndex, LastPostIndex);
   const handleCart = async (id) => {
     await fetch(`${API}/addtocart/${id}/645b7dfa0f3e50ca3bd39a4f`, {
       method: "PUT",
@@ -47,7 +52,7 @@ export const ProductList = () => {
       ) : (
         <div>
           <div className="product-list">
-            {product.map((data) => (
+            {pagination.map((data) => (
               <ProductCard
                 key={data._id}
                 data={data}
@@ -57,6 +62,11 @@ export const ProductList = () => {
               />
             ))}
           </div>
+          <Pagination
+            total={product.length}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
         </div>
       )}
     </div>

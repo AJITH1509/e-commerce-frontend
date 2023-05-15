@@ -1,3 +1,113 @@
 body{
     margin: 0px;
 }
+/* login css */
+#login-container{
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    text-align: center;
+    transition: all 0.8s;
+    background-color: none;
+  }
+  #login-container:hover{
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  #login-container h4{
+    font-family: 'Allura', cursive;
+    font-size: 20px;
+    margin: 5px auto;
+  }
+    .card-content{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .signin{
+      margin: 0px;
+    }
+    .signin:hover{
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .showpassword{
+      display: flex;
+      margin-right: 0px auto;
+      align-items: center;
+    }
+  
+    .main-container{
+      /* min-height: 100vh; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .animation-words {
+      margin-left: 100px;
+      font-size: 40px;
+      color:#03001C;
+      font-family: 'Graduate', cursive;
+    }
+    
+    .animation-words h1 {
+      opacity: 0;
+      animation: fade-in 3s ease-out forwards;
+    }
+    
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .profile-image{
+        margin: 10px auto;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      #uploadfile{
+        display: none;
+      }
+      .upload-btn{
+        cursor: pointer;
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: 5px 5px 5px 5px;
+        background-color: rgba(77, 93, 166, 0.416);
+        transition: all 0.3s;
+      }
+      .upload-btn:hover{
+        transform: scale(103%);
+        background-color: rgba(31, 38, 70, 0.416);
+      }
+      
+      .profile-main-container{
+        background-image: url("https://images3.alphacoders.com/212/thumb-1920-212395.jpg");
+          min-height: 100vh;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+      }
+      
+      #profile-page-card{
+        margin: 30px auto;
+        max-width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #C9EEFF;
+      }
+      #profile-page-card h2{
+       font-family: 'Allura', cursive;
+       font-size:30px;
+       margin-right: 20px;
+      }

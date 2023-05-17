@@ -1,7 +1,25 @@
 #search{
-   transition: all 0.3;
-   
+   transition: width 0.3;
 }
-#search:focus{
+#search:hover{
   width: 500px;
  }
+ #website-name{
+   font-weight: bolder;
+   font-family: 'Righteous', cursive;
+   letter-spacing: 2px;
+   font-size: 24px;
+ }
+ .search-bar {
+  margin-left: 10px;
+  padding: 5px;
+  transition: all 0.5s;
+  border-radius: 5px;
+  width: 200px; /* Set an initial width for the search bar */
+}
+
+.search-bar:focus {
+
+  width: 400px;
+  outline: 4px solid yellow; /* Remove outline on focus */
+}

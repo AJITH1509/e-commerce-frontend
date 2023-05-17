@@ -54,6 +54,7 @@
     font-weight: bold;
 }
 .qunatity-btn p:hover{
+    cursor: pointer;
     background-color: rgba(128, 128, 128, 0.39);
 }
 .qunatity-btn p{

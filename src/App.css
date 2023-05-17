@@ -2,6 +2,11 @@ body{
     margin: 0px;
 }
 /* login css */
+.login-page-main-container{
+  background-color: whitesmoke;
+  min-height: 100vh;
+  margin: 0px;
+}
 #login-container{
     margin: 100px auto;
     display: flex;
@@ -9,7 +14,7 @@ body{
     max-width: 400px;
     text-align: center;
     transition: all 0.8s;
-    background-color: none;
+    background-color: rgba(0, 247, 255, 0.338);
   }
   #login-container:hover{
     background-color: rgba(255, 255, 255, 0.7);

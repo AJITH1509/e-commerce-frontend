@@ -75,7 +75,7 @@ export const Cart = () => {
       {cartItems.length === 0 ? (
         <div className="empty-cart">
           <img
-            src="https://www.chandranscreation.com/images/empty-cart.jpg"
+            src="https://skoozo.com/assets/img/empty-cart.png"
             alt="no-items-image"
           />
         </div>

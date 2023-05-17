@@ -85,7 +85,7 @@ export const LoginPage = () => {
         <Stack spacing={2} sx={{ width: "100%" }}>
           <form onSubmit={handleSubmit}>
             <Card id="login-container">
-              <h4>Welcome !!</h4>
+              <h4>Welcome to Ekart !</h4>
               <CardContent className="card-content">
                 <TextField
                   name="email"
@@ -93,7 +93,7 @@ export const LoginPage = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   label="Email"
-                  variant="outlined"
+                  variant="standard"
                   error={touched.email && errors.email}
                   helperText={
                     touched.email && errors.email ? errors.email : null
@@ -106,7 +106,7 @@ export const LoginPage = () => {
                   onBlur={handleBlur}
                   label="password"
                   type={show ? "text" : "password"}
-                  variant="outlined"
+                  variant="standard"
                   error={touched.password && errors.password}
                   helperText={
                     touched.password && errors.password ? errors.password : null
@@ -122,8 +122,10 @@ export const LoginPage = () => {
 
                 <Button
                   // onClick={handleToggle}
+                  sx={{ borderRadius: "10px" }}
                   type="submit"
                   variant="contained"
+                  color="error"
                 >
                   Login
                 </Button>
@@ -138,7 +140,7 @@ export const LoginPage = () => {
                 <Button
                   style={{ width: "50%", margin: "0px auto" }}
                   onClick={() => navigate("/signup")}
-                  variant="contained"
+                  variant="outlined"
                   color="success"
                 >
                   Create Account

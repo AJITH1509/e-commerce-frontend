@@ -6,6 +6,9 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { NavBar } from "./NavBar";
 import { LinearColor } from "./Loading.jsx";
 import { Pagination } from "./Pagination.jsx";
+import Snackbar from "@mui/material/Snackbar";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 export const ProductList = () => {
   const [show, setShow] = useState(true);
@@ -16,13 +19,34 @@ export const ProductList = () => {
   const firstPostIndex = LastPostIndex - 8;
   const [loading, setLoading] = useState(true);
   const [matchFound, setMatchFound] = useState(true);
+  const [message, setMessage] = useState("");
+  const [state, setState] = useState({
+    open: false,
+    vertical: "top",
+    horizontal: "right",
+  });
+  const { vertical, horizontal, open } = state;
+  const handleOpenSnackbar = (message) => {
+    setMessage(message);
+    setState({ ...state, open: true });
+  };
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
 
   const pagination = product.slice(firstPostIndex, LastPostIndex);
   const handleCart = async (id) => {
-    await fetch(`${API}/addtocart/${id}/645b7dfa0f3e50ca3bd39a4f`, {
-      method: "PUT",
-      headers: { "content-type": "application/json" },
-    }).then(() => setShow(!show));
+    const result = await fetch(
+      `${API}/addtocart/${id}/645b7dfa0f3e50ca3bd39a4f`,
+      {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+      }
+    );
+    const response = await result.json();
+    handleOpenSnackbar(response.message);
+    setShow(!show);
   };
   const getData = () => {
     fetch(`${API}/products`)
@@ -81,7 +105,8 @@ export const ProductList = () => {
                 />
               ))
             ) : (
-              <h1>No match found</h1>
+              // <h1>No match found</h1>
+              <img src="https://cdn.dribbble.com/users/898770/screenshots/3744292/search-bar.gif" />
             )}
           </div>
           <Pagination
@@ -91,11 +116,24 @@ export const ProductList = () => {
           />
         </div>
       )}
+
+      <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
+        open={open}
+        onClose={handleClose}
+        message={message}
+        key={vertical + horizontal}
+        action={
+          <IconButton size="small" color="inherit" onClick={handleClose}>
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        }
+      />
     </div>
   );
 };
 
-const ProductCard = ({ data, handleCart, setShow, show }) => {
+const ProductCard = ({ data, handleCart }) => {
   return (
     <div className="product-card">
       <img src={data.image} />

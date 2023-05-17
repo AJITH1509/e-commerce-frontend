@@ -1,5 +1,5 @@
 .product-list-cart{
-    margin-top: 20px ;
+    margin:20px ;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,4 +70,36 @@
 }
 .qunatity-btn :nth-child(3){
     margin: 0px 0px 5px 20px;
+ }
+
+ @media screen and (max-width: 768px){
+    .product-list-cart{
+        margin-top: 5px ;
+    }
+    .product-card-cart{
+        padding: 5px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+      
+    }
+    .product-card-cart img{
+        height: 100px;
+        width: 150px;
+        object-fit: contain;
+        object-position: center;
+        mix-blend-mode: color-burn;
+    }
+    .product-card-cart h3{
+     margin: 3px;
+    }
+    .description{
+        margin: 3px;
+    }
+    .sub-total{
+        margin: 5px;
+        text-align: center;
+        font-size: 24px;
+        font-weight:bold;
+    }
  }

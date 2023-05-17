@@ -115,7 +115,7 @@ const CartItemCard = ({ data, deleteCartItems, updateCartItem }) => {
       <div className="product-details-cart">
         <div>
           <h3>{data.name}</h3>
-          <p>{data.description}</p>
+          <p className="description">{data.description}</p>
         </div>
         <h4>{`Rs.${data.price} /-`}</h4>
         <h4>Quantity</h4>

@@ -49,3 +49,37 @@
 .product-card button{
     margin: 10px;
 }
+
+@media screen and (max-width:768px){
+    .product-list{
+        margin: 10px;
+        min-height: min-content;
+        display: grid;
+        justify-items: center;
+        grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+        gap: 16px;
+    }
+    .product-card{
+        padding: 16px;
+        width: 150px;
+        height: 200px;
+        border-radius: 10px;
+        text-align: center;
+        transition: all 0.2s;
+    }
+    .product-card img{
+        height: 100px;
+        width: 150px;
+        object-fit: contain;
+        object-position: center;
+        mix-blend-mode: color-burn;
+    
+    }
+    .product-card button{
+        margin: 0px;
+    }
+    .product-card:hover{
+        transform: scale(1.02);
+   
+    }
+}

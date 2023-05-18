@@ -20,6 +20,7 @@ export const ProductList = () => {
   const [loading, setLoading] = useState(true);
   const [matchFound, setMatchFound] = useState(true);
   const [message, setMessage] = useState("");
+  const user = localStorage.getItem("id");
   const [state, setState] = useState({
     open: false,
     vertical: "top",
@@ -37,13 +38,10 @@ export const ProductList = () => {
 
   const pagination = product.slice(firstPostIndex, LastPostIndex);
   const handleCart = async (id) => {
-    const result = await fetch(
-      `${API}/addtocart/${id}/645b7dfa0f3e50ca3bd39a4f`,
-      {
-        method: "PUT",
-        headers: { "content-type": "application/json" },
-      }
-    );
+    const result = await fetch(`${API}/addtocart/${id}/${user}`, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+    });
     const response = await result.json();
     handleOpenSnackbar(response.message);
     setShow(!show);
@@ -77,7 +75,7 @@ export const ProductList = () => {
   };
 
   useEffect(() => {
-    fetch(`${API}/cart/645b7dfa0f3e50ca3bd39a4f`)
+    fetch(`${API}/cart/${user}`)
       .then((response) => response.json())
       .then((cart) => {
         const cartArray = cart.cart;
@@ -85,6 +83,11 @@ export const ProductList = () => {
         setCart(cartLength);
       });
   }, [show]);
+
+  const refreshWindow = () => {
+    window.location.reload();
+  };
+
   return (
     <div>
       <NavBar cart={cart} handleSearch={handleSearch} />
@@ -106,7 +109,11 @@ export const ProductList = () => {
               ))
             ) : (
               // <h1>No match found</h1>
-              <img src="https://cdn.dribbble.com/users/898770/screenshots/3744292/search-bar.gif" />
+              <img
+                style={{ cursor: "pointer" }}
+                onClick={refreshWindow}
+                src="https://cdn.dribbble.com/users/898770/screenshots/3744292/search-bar.gif"
+              />
             )}
           </div>
           <Pagination

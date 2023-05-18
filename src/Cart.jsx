@@ -13,7 +13,7 @@ export const Cart = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const user = "645b7dfa0f3e50ca3bd39a4f"; //localStorage.getItem("id");
+  const user = localStorage.getItem("id");
 
   const getCartItems = () => {
     setLoading(true);

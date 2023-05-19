@@ -3,9 +3,10 @@ body{
 }
 /* login css */
 .login-page-main-container{
+  margin: 0px;
+  padding: 16px;
   background-color: whitesmoke;
   min-height: 100vh;
-  margin: 0px;
 }
 #login-container{
     margin: 100px auto;
@@ -69,6 +70,18 @@ body{
       to {
         opacity: 1;
       }
+    }
+
+    @media screen and (max-width: 768px) {
+      #login-container{
+        margin: 40px auto;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        transition: all 0.8s;
+        background-color: rgba(0, 247, 255, 0.338);
+      }
+      
     }
 
     

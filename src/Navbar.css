@@ -8,7 +8,12 @@
    font-weight: bolder;
    font-family: 'Righteous', cursive;
    letter-spacing: 2px;
-   font-size: 24px;
+   font-size: 30px;
+   color:aliceblue
+ }
+ #website-name span{
+  color: yellow;
+  font-size: 24px;
  }
  .search-bar {
   margin-left: 10px;
@@ -22,4 +27,9 @@
 
   width: 400px;
   outline: 4px solid yellow; /* Remove outline on focus */
+}
+@media screen and (max-width:768px) {
+  #website-name{
+    font-size: 16px;
+  }
 }

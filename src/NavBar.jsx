@@ -119,10 +119,10 @@ export function NavBar({ cart, handleSearch }) {
             variant="h5"
             noWrap
             component="div"
-            sx={{ display: { xs: "none", sm: "block", cursor: "pointer" } }}
+            sx={{ display: { cursor: "pointer" } }}
             id="website-name"
           >
-            E Kart
+            E<span>Kart</span>
           </Typography>
           <input
             onChange={handleSearch}

@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./NavBar.css";
+import "./Navbar.css";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,8 +12,6 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useNavigate } from "react-router-dom";
-import { API } from "../global";
-import { useState, useEffect } from "react";
 
 export function NavBar({ cart, handleSearch }) {
   const navigate = useNavigate();
@@ -29,6 +27,11 @@ export function NavBar({ cart, handleSearch }) {
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
+  };
+
+  const logOut = () => {
+    localStorage.clear();
+    navigate("/");
   };
 
   const handleMenuClose = () => {
@@ -57,8 +60,8 @@ export function NavBar({ cart, handleSearch }) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Log out</MenuItem>
+      <MenuItem onClick={() => navigate("/account")}>My Account</MenuItem>
+      <MenuItem onClick={logOut}>Log out</MenuItem>
     </Menu>
   );
 

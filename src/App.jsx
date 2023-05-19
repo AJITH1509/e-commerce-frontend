@@ -6,7 +6,7 @@ import { ForgetPass } from "./Forget";
 import { VerifyOtp } from "./VerifyOtp";
 import { NewPassword } from "./newPassword";
 import { ProductList } from "./Product";
-import { Profile } from "./profile.jsx";
+import { Profile } from "./MyAccount.jsx";
 import { Cart } from "./Cart";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
         <Route exact path="/login/forgetpassword" element={<ForgetPass />} />
         <Route exact path="/verifyotp" element={<VerifyOtp />} />
         <Route exact path="/setpassword" element={<NewPassword />} />
-        <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/account" element={<Profile />} />
       </Routes>
     </div>
   );

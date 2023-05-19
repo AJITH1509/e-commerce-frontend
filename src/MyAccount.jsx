@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import { API } from "../global.js";
 import Card from "@mui/material/Card";
@@ -6,13 +5,14 @@ import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import { useNavigate } from "react-router-dom";
 import { LinearColor } from "./Loading.jsx";
 import { Button } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import IconButton from "@mui/material/IconButton";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import "./MyAccount.css";
 
 export const Profile = () => {
   const navigate = useNavigate();
   const [data, setData] = useState(true);
-  const id = localStorage.getItem("id");
+  const user = localStorage.getItem("id");
 
   const [imageSrc, setImageSrc] = useState("");
 
@@ -26,12 +26,12 @@ export const Profile = () => {
   };
 
   useEffect(() => {
-    fetch(`${API}/${id}`, {
+    fetch(`${API}/profile/${user}`, {
       headers: {
         "x-auth-token": localStorage.getItem("token"),
       },
     })
-      .then((response) => checkFunction(response))
+      .then((response) => response.json())
       .then((data) => setData(data));
   }, []);
 
@@ -57,13 +57,24 @@ export const Profile = () => {
           <hr style={{ opacity: 0.5, width: "70%" }} />
           <div className="profile-name-container">
             <h2>{data.name}</h2>
-            <IconButton
-              onClick={() => navigate(`/editprofile/${data._id}`)}
-              color="secondary"
-              aria-label="edit"
+          </div>
+          <div id="profile-btn">
+            <Button
+              color="success"
+              onClick={() => navigate("/cart")}
+              variant="outlined"
+              startIcon={<ShoppingCartIcon />}
             >
-              <EditIcon />
-            </IconButton>
+              Cart
+            </Button>
+            <Button
+              color="secondary"
+              onClick={() => navigate("/cart")}
+              variant="outlined"
+              startIcon={<ShoppingBagIcon />}
+            >
+              Your Orders
+            </Button>
           </div>
         </Card>
       ) : (

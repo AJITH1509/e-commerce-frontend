@@ -71,48 +71,4 @@ body{
       }
     }
 
-    .profile-image{
-        margin: 10px auto;
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-      #uploadfile{
-        display: none;
-      }
-      .upload-btn{
-        cursor: pointer;
-        border: 2px solid black;
-        border-radius: 5px;
-        padding: 5px 5px 5px 5px;
-        background-color: rgba(77, 93, 166, 0.416);
-        transition: all 0.3s;
-      }
-      .upload-btn:hover{
-        transform: scale(103%);
-        background-color: rgba(31, 38, 70, 0.416);
-      }
-      
-      .profile-main-container{
-        background-image: url("https://images3.alphacoders.com/212/thumb-1920-212395.jpg");
-          min-height: 100vh;
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: cover;
-      }
-      
-      #profile-page-card{
-        margin: 30px auto;
-        max-width: 300px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #C9EEFF;
-      }
-      #profile-page-card h2{
-       font-family: 'Allura', cursive;
-       font-size:30px;
-       margin-right: 20px;
-      }
+    

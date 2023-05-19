@@ -1,0 +1,53 @@
+.profile-image{
+    margin: 10px auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  #uploadfile{
+    display: none;
+  }
+  .upload-btn{
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 5px ;
+    font-size: 24px;
+    font-weight: bold;
+     font-family: 'Allura', cursive;
+    background-color: rgba(77, 93, 166, 0.416);
+  }
+  .upload-btn:hover{
+    transform: scale(103%);
+    background-color: rgba(31, 38, 70, 0.416);
+  }
+  
+  .profile-main-container{
+      min-height: 90vh;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+  }
+  
+  #profile-page-card{
+    margin: 30px auto ;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #C9EEFF;
+  }
+  #profile-page-card h2{
+  
+   font-size:30px;
+   margin: 5px;
+  }
+  #profile-btn{
+    display: flex;
+    padding: 10px;
+  }
+  #profile-btn Button{
+    margin: 10px;
+  }

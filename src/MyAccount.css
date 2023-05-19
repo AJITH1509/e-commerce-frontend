@@ -24,6 +24,7 @@
   }
   
   .profile-main-container{
+    margin: 10px;
       min-height: 90vh;
       background-repeat: no-repeat;
       background-position: center;
@@ -50,4 +51,8 @@
   }
   #profile-btn Button{
     margin: 10px;
+  }
+
+  @media screen and (max-width: 768px) {
+    
   }

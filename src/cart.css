@@ -102,4 +102,9 @@
         font-size: 24px;
         font-weight:bold;
     }
+    .empty-cart img{
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+     }
  }

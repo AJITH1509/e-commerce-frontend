@@ -48,8 +48,8 @@ export const LoginPage = () => {
   const { handleSubmit, handleChange, handleBlur, values, touched, errors } =
     useFormik({
       initialValues: {
-        email: "",
-        password: "",
+        email: "test@123.com",
+        password: "test@123",
       },
       validationSchema: formValidationSchema,
       onSubmit: async (values) => {

@@ -29,7 +29,7 @@ export function NavBar({ cart, handleSearch }) {
     recognition.onresult = async (event) => {
       const speechResult = await event.results[0][0].transcript; // Get the transcribed speech
       setTranscript(speechResult); // Update the state with the transcribed speech
-      handleSearch(transcript);
+      handleSearch(speechResult);
     };
   };
 
@@ -142,7 +142,7 @@ export function NavBar({ cart, handleSearch }) {
           <input
             value={transcript}
             onChange={(e) => {
-              handleSearch(e);
+              handleSearch(e.target.value);
               setTranscript(e.target.value);
             }}
             onClick={() => navigate("/products")}

@@ -59,9 +59,11 @@ export const ProductList = () => {
     getData();
   }, []);
 
-  const handleSearch = (e) => {
-    let key = e.target.value;
-    if (key) {
+  const handleSearch = (keyword) => {
+    let key = keyword;
+    console.log(key);
+
+    if (key !== "") {
       // Add a check to ensure searchQuery is not empty
       fetch(`${API}/products/search/${key}`)
         .then((response) => response.json())

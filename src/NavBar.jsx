@@ -12,11 +12,26 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import MicIcon from "@mui/icons-material/Mic";
 
 export function NavBar({ cart, handleSearch }) {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+  const [transcript, setTranscript] = useState("");
+  const recognition = new window.webkitSpeechRecognition(); // Create a new instance of SpeechRecognition
+  const startRecognition = async () => {
+    recognition.start(); // Start speech recognition
+    recognition.lang = "en-US"; // Set the language for speech recognition (optional)
+
+    recognition.onresult = async (event) => {
+      const speechResult = await event.results[0][0].transcript; // Get the transcribed speech
+      setTranscript(speechResult); // Update the state with the transcribed speech
+      handleSearch(transcript);
+    };
+  };
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -125,11 +140,18 @@ export function NavBar({ cart, handleSearch }) {
             E<span>Kart</span>
           </Typography>
           <input
-            onChange={handleSearch}
+            value={transcript}
+            onChange={(e) => {
+              handleSearch(e);
+              setTranscript(e.target.value);
+            }}
             onClick={() => navigate("/products")}
             className="search-bar"
             placeholder="Search Products"
           />
+          <IconButton onClick={startRecognition} className="voice-button">
+            <MicIcon />
+          </IconButton>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton

@@ -9,6 +9,22 @@ import { Pagination } from "./Pagination.jsx";
 import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import Box from "@mui/material/Box";
+import Skeleton from "@mui/material/Skeleton";
+
+const ProductCardLoading = () => {
+  return (
+    <div className="product-card">
+      <Box sx={{ pt: 0.5 }}>
+        <Skeleton variant="rectangular" width={150} height={118} />
+        <Skeleton />
+        <Skeleton width="60%" />
+        <Skeleton />
+        <Skeleton width="40%" />
+      </Box>
+    </div>
+  );
+};
 
 export const ProductList = () => {
   const [show, setShow] = useState(true);
@@ -21,6 +37,7 @@ export const ProductList = () => {
   const [matchFound, setMatchFound] = useState(true);
   const [message, setMessage] = useState("");
   const user = localStorage.getItem("id");
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8];
   const [state, setState] = useState({
     open: false,
     vertical: "top",
@@ -95,7 +112,11 @@ export const ProductList = () => {
       <NavBar cart={cart} handleSearch={handleSearch} />
 
       {loading ? (
-        <LinearColor />
+        <div className="product-list">
+          {numbers.map((_, index) => (
+            <ProductCardLoading key={index} />
+          ))}
+        </div>
       ) : (
         <div>
           <div className="product-list">

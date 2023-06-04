@@ -4,7 +4,6 @@ import "./product.css";
 import Button from "@mui/material/Button";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { NavBar } from "./NavBar";
-import { LinearColor } from "./Loading.jsx";
 import { Pagination } from "./Pagination.jsx";
 import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
@@ -47,6 +46,8 @@ export const ProductList = () => {
   const handleOpenSnackbar = (message) => {
     setMessage(message);
     setState({ ...state, open: true });
+    //timer for snack bar
+    setTimeout(handleClose, 5000);
   };
 
   const handleClose = () => {
@@ -93,6 +94,7 @@ export const ProductList = () => {
     }
   };
 
+  //for showing cart number for each user
   useEffect(() => {
     fetch(`${API}/cart/${user}`)
       .then((response) => response.json())

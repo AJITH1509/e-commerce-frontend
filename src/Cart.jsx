@@ -5,7 +5,6 @@ import { API } from "../global";
 import { useEffect } from "react";
 import { NavBar } from "./NavBar";
 import Button from "@mui/material/Button";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { LinearColor } from "./Loading";
 import GooglePayButton from "@google-pay/button-react";

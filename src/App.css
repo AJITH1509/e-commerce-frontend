@@ -5,7 +5,9 @@ body{
 .login-page-main-container{
   margin: 0px;
   padding: 16px;
-  background-color: whitesmoke;
+  background-image: url('https://images.pexels.com/photos/325153/pexels-photo-325153.jpeg?cs=srgb&dl=pexels-karol-d-325153.jpg&fm=jpg');
+  background-size: cover; /* Adjust as per your needs */
+  background-position: center;
   min-height: 100vh;
 }
 #login-container{
@@ -15,10 +17,10 @@ body{
     max-width: 400px;
     text-align: center;
     transition: all 0.8s;
-    background-color: rgba(0, 247, 255, 0.338);
+    background-color: rgba(245, 245, 245, 0.844);
   }
   #login-container:hover{
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 1);
   }
   #login-container h4{
     font-family: 'Allura', cursive;
@@ -44,34 +46,6 @@ body{
       align-items: center;
     }
   
-    .main-container{
-      /* min-height: 100vh; */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  
-    .animation-words {
-      margin-left: 100px;
-      font-size: 40px;
-      color:#03001C;
-      font-family: 'Graduate', cursive;
-    }
-    
-    .animation-words h1 {
-      opacity: 0;
-      animation: fade-in 3s ease-out forwards;
-    }
-    
-    @keyframes fade-in {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
     @media screen and (max-width: 768px) {
       #login-container{
         margin: 40px auto;
@@ -79,7 +53,7 @@ body{
         flex-direction: column;
         text-align: center;
         transition: all 0.8s;
-        background-color: rgba(0, 247, 255, 0.338);
+        background-color: rgba(245, 245, 245, 0.844);
       }
       
     }

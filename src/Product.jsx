@@ -19,7 +19,7 @@ const ProductCardLoading = () => {
         <Skeleton />
         <Skeleton width="60%" />
         <Skeleton />
-        <Skeleton width="40%" />
+        <Skeleton variant="rectangular" width="70%" height={20} />
       </Box>
     </div>
   );
@@ -43,6 +43,8 @@ export const ProductList = () => {
     horizontal: "right",
   });
   const { vertical, horizontal, open } = state;
+
+  //for open snack Bar
   const handleOpenSnackbar = (message) => {
     setMessage(message);
     setState({ ...state, open: true });
@@ -50,20 +52,26 @@ export const ProductList = () => {
     setTimeout(handleClose, 5000);
   };
 
+  //for close snack Bar
   const handleClose = () => {
     setState({ ...state, open: false });
   };
 
+  //products slice for pagination
   const pagination = product.slice(firstPostIndex, LastPostIndex);
+
+  //add products to cart
   const handleCart = async (id) => {
     const result = await fetch(`${API}/addtocart/${id}/${user}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
     });
     const response = await result.json();
+    //opens snack bar
     handleOpenSnackbar(response.message);
     setShow(!show);
   };
+  //get all products
   const getData = () => {
     fetch(`${API}/products`)
       .then((response) => response.json())
@@ -77,10 +85,9 @@ export const ProductList = () => {
     getData();
   }, []);
 
+  //search for products
   const handleSearch = (keyword) => {
     let key = keyword;
-    console.log(key);
-
     if (key !== "") {
       // Add a check to ensure searchQuery is not empty
       fetch(`${API}/products/search/${key}`)

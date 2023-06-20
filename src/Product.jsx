@@ -10,6 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
+import { Footer } from "./Footer.jsx";
 
 const ProductCardLoading = () => {
   return (
@@ -118,56 +119,59 @@ export const ProductList = () => {
 
   return (
     <div>
-      <NavBar cart={cart} handleSearch={handleSearch} />
+      <div>
+        <NavBar cart={cart} handleSearch={handleSearch} />
 
-      {loading ? (
-        <div className="product-list">
-          {numbers.map((_, index) => (
-            <ProductCardLoading key={index} />
-          ))}
-        </div>
-      ) : (
-        <div>
+        {loading ? (
           <div className="product-list">
-            {matchFound ? (
-              pagination.map((data) => (
-                <ProductCard
-                  key={data._id}
-                  data={data}
-                  setShow={setShow}
-                  show={show}
-                  handleCart={handleCart}
-                />
-              ))
-            ) : (
-              // <h1>No match found</h1>
-              <img
-                style={{ cursor: "pointer" }}
-                onClick={refreshWindow}
-                src="https://cdn.dribbble.com/users/898770/screenshots/3744292/search-bar.gif"
-              />
-            )}
+            {numbers.map((_, index) => (
+              <ProductCardLoading key={index} />
+            ))}
           </div>
-          <Pagination
-            total={product.length}
-            setCurrentPage={setCurrentPage}
-            currentPage={currentPage}
-          />
-        </div>
-      )}
+        ) : (
+          <div>
+            <div className="product-list">
+              {matchFound ? (
+                pagination.map((data) => (
+                  <ProductCard
+                    key={data._id}
+                    data={data}
+                    setShow={setShow}
+                    show={show}
+                    handleCart={handleCart}
+                  />
+                ))
+              ) : (
+                // <h1>No match found</h1>
+                <img
+                  style={{ cursor: "pointer" }}
+                  onClick={refreshWindow}
+                  src="https://cdn.dribbble.com/users/898770/screenshots/3744292/search-bar.gif"
+                />
+              )}
+            </div>
+            <Pagination
+              total={product.length}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+            />
+          </div>
+        )}
 
-      <Snackbar
-        anchorOrigin={{ vertical, horizontal }}
-        open={open}
-        onClose={handleClose}
-        message={message}
-        key={vertical + horizontal}
-        action={
-          <IconButton size="small" color="inherit" onClick={handleClose}>
-            <CloseIcon fontSize="small" />
-          </IconButton>
-        }
-      />
+        <Snackbar
+          anchorOrigin={{ vertical, horizontal }}
+          open={open}
+          onClose={handleClose}
+          message={message}
+          key={vertical + horizontal}
+          action={
+            <IconButton size="small" color="inherit" onClick={handleClose}>
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          }
+        />
+      </div>
+      <Footer />
     </div>
   );
 };

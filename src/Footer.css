@@ -1,0 +1,23 @@
+.footer{
+    width: 100%;
+    min-height: 20vh;
+    color: white;
+    background-color: #2D2727;
+}
+.footer p{
+    padding-top: 20px;
+    text-align: center;
+    color: white;
+    
+}
+.footer img{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+.social{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}

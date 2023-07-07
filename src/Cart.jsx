@@ -8,12 +8,33 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { LinearColor } from "./Loading";
 import GooglePayButton from "@google-pay/button-react";
+import Snackbar from "@mui/material/Snackbar";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 export const Cart = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const user = localStorage.getItem("id");
+  const [state, setState] = useState({
+    open: false,
+    vertical: "top",
+    horizontal: "right",
+  });
+  const { vertical, horizontal, open } = state;
+
+  //for open snack Bar
+  const handleOpenSnackbar = () => {
+    setState({ ...state, open: true });
+    //timer for snack bar
+    setTimeout(handleClose, 5000);
+  };
+
+  //for close snack Bar
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
 
   const getCartItems = () => {
     setLoading(true);
@@ -87,15 +108,33 @@ export const Cart = () => {
               data={data}
               deleteCartItems={deleteCartItems}
               updateCartItem={updateCartItem}
+              handleOpenSnackbar={handleOpenSnackbar}
             />
           ))}
         </div>
       )}
+      <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
+        open={open}
+        onClose={handleClose}
+        message={"Order Placed"}
+        key={vertical + horizontal}
+        action={
+          <IconButton size="small" color="inherit" onClick={handleClose}>
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        }
+      />
     </div>
   );
 };
 
-const CartItemCard = ({ data, deleteCartItems, updateCartItem }) => {
+const CartItemCard = ({
+  data,
+  deleteCartItems,
+  updateCartItem,
+  handleOpenSnackbar,
+}) => {
   const [quantity, setQuantity] = useState(data.quantity || 1);
 
   const handleIncrement = () => {
@@ -160,7 +199,7 @@ const CartItemCard = ({ data, deleteCartItems, updateCartItem }) => {
               },
             }}
             onLoadPaymentData={(paymentRequest) => {
-              console.log("load payment data", paymentRequest);
+              handleOpenSnackbar();
             }}
           />
           <Button

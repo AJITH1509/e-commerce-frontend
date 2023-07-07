@@ -20,7 +20,7 @@ export const Cart = () => {
   const [state, setState] = useState({
     open: false,
     vertical: "top",
-    horizontal: "right",
+    horizontal: "center",
   });
   const { vertical, horizontal, open } = state;
 
